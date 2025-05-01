@@ -1,27 +1,28 @@
-# Koii Transaction Analysis Node: Decentralized Blockchain Monitoring and Transparency Tool
+# Koii Transaction Analysis Node: Decentralized Blockchain Transparency Toolkit
 
 ## Project Overview
 
-A comprehensive blockchain transaction analysis node designed for the Koii network, this project provides an innovative solution for monitoring and tracking cryptocurrency token movements. The primary purpose is to enhance transparency and detect potential market manipulation in the KOII token ecosystem.
+The Koii Transaction Analysis Node is an innovative, open-source blockchain monitoring tool designed to enhance transparency and provide deep insights into KOII token transactions. This decentralized solution offers comprehensive tracking and analysis of blockchain activities, focusing on detecting and reporting significant token movements.
 
 ### Core Purpose
-The project serves as an open-source task that enables decentralized monitoring of blockchain transactions, with a specific focus on:
-- Tracking large KOII token transfers
-- Identifying wallet interactions with cryptocurrency exchanges
-- Detecting potential token dumping behavior
+The project addresses critical needs in blockchain transparency by:
+- Monitoring real-time cryptocurrency token transfers
+- Identifying potential market manipulation
+- Providing transparent, verifiable transaction tracking for the Koii network
 
 ### Key Features
-- **Real-time Transaction Monitoring**: Continuously polls Koii's mainnet to capture and analyze blockchain transactions
-- **Exchange Interaction Tracking**: Identifies and flags wallet transactions with known exchange deposit addresses
-- **Large Transfer Detection**: Tracks significant wallet balance changes and highlights potential market manipulation
-- **Verifiable API**: Provides a transparent, traceable API that allows external querying of transaction data
-- **Comprehensive Wallet Analysis**: Offers detailed insights into wallet activities and transfer patterns
+- **Real-time Transaction Monitoring**: Continuously captures and analyzes blockchain transactions
+- **Exchange Interaction Tracking**: Detects and flags wallet transactions with known cryptocurrency exchanges
+- **Large Transfer Detection**: Identifies significant wallet balance changes and potential market manipulation
+- **Comprehensive Wallet Analysis**: Provides detailed insights into wallet activities and transfer patterns
+- **Verifiable API**: Offers a transparent, traceable interface for querying transaction data
 
 ### Benefits
 - Enhances market transparency for KOII token holders
-- Provides an open-source tool for community-driven blockchain analysis
-- Enables early detection of potential market manipulation
-- Creates a decentralized, collaborative approach to token movement tracking
+- Enables community-driven blockchain analysis
+- Supports early detection of potential irregular trading behaviors
+- Creates a decentralized approach to token movement tracking
+- Provides open and accessible transaction monitoring
 
 ## Getting Started, Installation, and Setup
 
@@ -48,16 +49,15 @@ The project serves as an open-source task that enables decentralized monitoring 
    Create a `.env` file in the project root with the following configuration:
    ```
    KOII_RPC_ENDPOINT=https://mainnet.koii.network
-   TRANSACTION_THRESHOLD=10000  # Example large transaction threshold in KOII tokens
+   TRANSACTION_THRESHOLD=10000  # Large transaction threshold in KOII tokens
    ```
 
-### Development Setup
+### Development Mode
 
-1. Start the development server:
-   ```bash
-   npm run dev
-   ```
-   This will run the node with hot-reloading enabled for ease of development.
+Run the development server with hot-reloading:
+```bash
+npm run dev
+```
 
 ### Production Build
 
@@ -71,385 +71,245 @@ The project serves as an open-source task that enables decentralized monitoring 
    npm start
    ```
 
-### Configuration Options
-
-- `KOII_RPC_ENDPOINT`: Specify the Koii blockchain RPC endpoint
-- `TRANSACTION_THRESHOLD`: Set the token amount threshold for flagging large transactions
-
-### Platform-Specific Notes
+### Platform-Specific Setup
 
 #### Windows
-- Ensure you are using Node.js 16.x or later
-- You may need to install additional build tools via `npm install -g windows-build-tools`
+- Ensure Node.js 16.x or later is installed
+- Install additional build tools if needed:
+  ```bash
+  npm install -g windows-build-tools
+  ```
 
 #### macOS
-- Install Xcode Command Line Tools if not already present
-- Use Homebrew to manage Node.js versions if needed
+- Install Xcode Command Line Tools
+- Use Homebrew for Node.js version management if required
 
 #### Linux
-- Use `nvm` (Node Version Manager) for easy Node.js version management
-- Install build-essential packages if compilation is required
+- Use `nvm` (Node Version Manager) for Node.js version management
+- Install build-essential packages if necessary
 
-### Troubleshooting
+### Configuration Options
 
-- Verify Node.js and npm versions: `node --version` and `npm --version`
-- Ensure all dependencies are correctly installed by running `npm install`
-- Check the project's GitHub Issues for known problems and solutions
+Customize the following environment variables in the `.env` file:
+- `KOII_RPC_ENDPOINT`: Koii blockchain RPC endpoint 
+- `TRANSACTION_THRESHOLD`: Token amount threshold for flagging large transactions
 
-## API Documentation
+### Verification
 
-The API provides endpoints for querying blockchain transaction data and wallet activities. All endpoints return JSON-formatted responses.
-
-### Available Endpoints
-
-#### 1. Flagged Transactions
-- **Method:** GET
-- **Path:** `/api/flagged-transactions`
-- **Description:** Retrieves a list of transactions flagged by the system
-- **Parameters:**
-  - `limit` (optional): Number of transactions to return
-  - `offset` (optional): Pagination offset
-
-**Example Request:**
-```
-GET /api/flagged-transactions?limit=10&offset=0
+After installation, verify the setup:
+```bash
+node --version
+npm --version
 ```
 
-**Example Response:**
-```json
-{
-  "transactions": [
-    {
-      "blockNumber": 12345,
-      "transactionId": "0x...",
-      "sourceWallet": "...",
-      "destinationWallet": "...",
-      "amount": 1000,
-      "nodeSignature": "..."
-    }
-  ]
-}
-```
+Ensure these commands return the expected version numbers for Node.js and npm.
 
-#### 2. Wallet Activity
-- **Method:** GET
-- **Path:** `/api/wallet/{address}`
-- **Description:** Retrieves historical activity for a specific wallet
-- **Parameters:**
-  - `address` (required): Wallet address to query
-  - `startDate` (optional): Start date for activity range
-  - `endDate` (optional): End date for activity range
+## Features / Capabilities
 
-**Example Request:**
-```
-GET /api/wallet/0x123...?startDate=2023-01-01&endDate=2023-12-31
-```
+The Koii Transaction Analysis Node offers a comprehensive set of features for blockchain transaction monitoring and analysis:
 
-**Example Response:**
-```json
-{
-  "walletAddress": "0x123...",
-  "totalTransactions": 50,
-  "exchanges": ["MEXC", "Gate.io"],
-  "largeTransfers": [...]
-}
-```
+### Real-time Transaction Monitoring
+- Continuously poll Koii's mainnet to capture and analyze blockchain transactions
+- Track KOII token transfers in real-time across the network
 
-#### 3. Real-time Alerts
-- **Method:** GET
-- **Path:** `/api/alerts`
-- **Description:** Provides real-time alerts for significant transfers
-- **Parameters:** None
+### Exchange Interaction Tracking
+- Identify and flag wallet transactions with known cryptocurrency exchange deposit addresses
+- Monitor interactions with exchanges like MEXC and Gate.io
+- Detect potential token movement and trading patterns
 
-**Example Request:**
-```
-GET /api/alerts
-```
+### Large Transfer Detection
+- Track significant wallet balance changes
+- Flag wallets with substantial token transfers
+- Highlight potential market manipulation activities
 
-**Example Response:**
-```json
-{
-  "alerts": [
-    {
-      "type": "LargeTransfer",
-      "wallet": "0x...",
-      "amount": 50000,
-      "timestamp": "2023-12-15T12:34:56Z"
-    }
-  ]
-}
-```
+### Verifiable API
+- Provide a transparent, traceable API for transaction data querying
+- Support multiple endpoints for comprehensive blockchain insights:
+  - Flagged transaction listings
+  - Wallet activity histories
+  - Real-time transfer alerts
 
-### Authentication
-No authentication is currently required to access these endpoints. Future versions may implement API key or token-based authentication.
+### Comprehensive Wallet Analysis
+- Detailed tracking of wallet transfer patterns
+- Analyze transaction volumes and frequencies
+- Identify potential token dumping behavior
 
-### Notes
-- All transaction amounts are in KOII tokens
-- Transactions are verified and signed by participating nodes
-- Response data may vary based on current blockchain state
-
-## Authentication
-
-The Koii Transaction Analysis Node uses API authentication to ensure secure and controlled access to transaction data and analysis endpoints.
-
-### Authentication Mechanism
-The API implements token-based authentication to protect endpoints and validate access. Clients must include a valid authentication token in the request headers to interact with the system.
-
-### API Token Requirements
-- Tokens are required for all API endpoints
-- Tokens must be passed in the `Authorization` header
-- Token format follows the Bearer token standard
-
-#### Example Authentication Header
-```http
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
-
-### Access Control
-- Different API endpoints may require varying levels of access permissions
-- Token permissions are managed server-side to control data visibility and interaction capabilities
-
-### Security Considerations
-- Tokens have an expiration time to mitigate potential security risks
-- Each token is uniquely associated with a specific client or user
-- Invalid or expired tokens will result in a `401 Unauthorized` response
-
-### Obtaining API Credentials
-To acquire API credentials:
-- Contact the project administrators
-- Request access through the official GitHub repository
-- Follow the project's official credential request process
-
-### Rate Limiting
-- API tokens are subject to rate limiting to prevent abuse
-- Excessive requests may result in temporary token suspension
-- Specific rate limit details are enforced by the API server
-
-## Deployment
-
-The project can be deployed using several approaches to support different infrastructure requirements:
-
-### Deployment Options
-
-#### Local Deployment
-For local development and testing, the project can be run directly using Node.js:
-
-```sh
-npm install
-npm start
-```
-
-#### Environment Configuration
-Key deployment considerations include:
-- Configure the `.env` file with the following critical parameters:
-  - `KOII_RPC_ENDPOINT`: Koii blockchain RPC endpoint (default: `https://mainnet.koii.network`)
-  - Transaction flagging thresholds
-  - Logging and monitoring settings
-
-#### Scaling Considerations
-- The node is designed for horizontal scalability
-- Can be deployed across multiple instances to increase transaction monitoring capacity
-- Each node independently processes blockchain transactions and can be load-balanced
-
-### Recommended Deployment Workflow
-1. Clone the repository
-2. Install dependencies
-3. Configure environment variables
-4. Run the application
-5. Monitor performance and transaction processing
-
-#### Monitoring
-- Implement logging to track:
-  - Transaction processing rates
-  - API request volumes
-  - Error rates and system health
-
-### Cloud Deployment Recommendations
-While specific deployment scripts are not included, the application is compatible with:
-- Cloud platforms (AWS, Google Cloud, Azure)
-- Containerization platforms
-- Kubernetes for orchestration
-
-### Performance Optimization
-- Use caching mechanisms for blockchain data
-- Implement efficient database indexing
-- Configure connection pooling for RPC requests
-
-## Project Structure
-
-The project is organized to facilitate efficient blockchain transaction monitoring and analysis. The key directories and files support the core functionalities of querying, analyzing, and reporting blockchain transactions.
-
-### Core Project Directories
-
-#### `src/`
-Contains the primary source code for the transaction analysis node:
-- `modules/`: Specialized modules for different aspects of blockchain transaction processing
-  - `rpc-query/`: Handles interactions with Koii's JSON-RPC API
-  - `transaction-monitor/`: Implements real-time transaction tracking logic
-  - `exchange-tracker/`: Manages detection of exchange-related transactions
-- `api/`: RESTful API implementation
-  - `routes/`: Defines API endpoint handlers
-  - `middleware/`: Contains request processing and authentication middleware
-- `utils/`: Utility functions for data processing and validation
-
-#### `config/`
-Stores configuration files and environment-specific settings:
-- `.env`: Environment variables for RPC endpoints and system thresholds
-- `exchange-addresses.json`: List of known exchange deposit addresses
-
-#### `tests/`
-Comprehensive test suite to ensure system reliability:
-- `unit/`: Individual component unit tests
-- `integration/`: End-to-end and integration test scenarios
-
-#### `docs/`
-Project documentation resources:
-- `api-specs/`: Detailed API documentation
-- `architecture/`: System design and component interaction diagrams
-
-#### `scripts/`
-Utility scripts for various development and deployment tasks:
-- `setup.sh`: Initial environment setup script
-- `deploy.sh`: Deployment automation script
-
-### Key Configuration Files
-
-- `package.json`: Node.js project configuration and dependency management
-- `tsconfig.json`: TypeScript compiler configuration
-- `README.md`: Project overview and getting started guide
-- `.gitignore`: Specifies intentionally untracked files to ignore
-
-### Data and Logging
-
-#### `logs/`
-Stores application logs for monitoring and debugging:
-- `transaction.log`: Detailed transaction processing logs
-- `error.log`: System error and exception logs
-
-### Output
-
-#### `dist/`
-Compiled TypeScript output directory for production deployment
+### Key Technical Capabilities
+- Blockchain data retrieval using Koii's JSON-RPC API
+- Configurable transaction thresholds
+- Node-verified transaction signatures
+- Scalable transaction processing architecture
 
 ## Technologies Used
 
-### Programming Languages and Frameworks
-- **JavaScript/TypeScript**: Primary programming language
-- **Node.js**: Runtime environment for server-side execution
-- **Express.js**: Web application framework for building the API
+### Programming Languages
+- JavaScript/TypeScript
+- Node.js
 
-### Blockchain and Blockchain Technologies
-- **Koii Blockchain**: Primary blockchain platform
-- **Koii JSON-RPC API**: For blockchain transaction querying and data retrieval
-- **Koii Mainnet RPC Endpoint**: (`https://mainnet.koii.network`) Used for transaction monitoring
+### Blockchain Technologies
+- Koii Blockchain
+- Koii JSON-RPC API
+- Koii Mainnet RPC Endpoint (`https://mainnet.koii.network`)
+
+### Web Framework
+- Express.js
 
 ### Development and Infrastructure Tools
-- **npm**: Package management and dependency installation
-- **Git**: Version control system
-- **GitHub**: Code hosting and collaboration platform
+- npm (Package Management)
+- Git (Version Control)
+- GitHub (Code Hosting and Collaboration)
 
 ### API Technologies
-- **RESTful API**: Architecture for implementing transaction query endpoints
-- **API Signature Verification**: For transaction traceability and transparency
+- RESTful API Architecture
+- API Signature Verification
 
-### Data Processing and Analysis
-- **Real-time Transaction Monitoring**: Custom data processing system
-- **Blockchain Data Aggregation**: Efficient transaction tracking and analysis techniques
+### Data Processing Technologies
+- Real-time Transaction Monitoring
+- Blockchain Data Aggregation Techniques
+
+### Potential Future Technologies
+- Machine Learning Models (for advanced anomaly detection)
+- Multi-blockchain Transaction Tracking Frameworks
 
 ## Additional Notes
 
-### Performance Considerations
-The transaction analysis node involves intensive blockchain data processing, which may require:
-- Robust server infrastructure with high-performance computing capabilities
-- Efficient data storage and indexing mechanisms
-- Periodic database maintenance to manage growing transaction logs
+### Performance and Scalability Considerations
 
-### Security Implications
-- All transaction data is publicly verifiable through blockchain exploration
-- Node operators must implement secure key management practices
-- Sensitive wallet tracking should adhere to privacy guidelines and legal regulations
+The blockchain transaction analysis node is designed to handle complex, real-time blockchain data processing. Key performance considerations include:
 
-### Monitoring and Alerts
-The system provides multiple alert mechanisms:
-- Real-time notifications for significant wallet transfers
-- Configurable thresholds for transaction size and frequency
-- Historical tracking of wallet behavior patterns
+- **Data Processing Intensity**: The system continuously monitors and analyzes blockchain transactions, requiring robust computational resources
+- **Horizontal Scalability**: Supports deployment across multiple nodes to distribute transaction monitoring load
+- **Caching Mechanisms**: Implements efficient data caching to optimize API response times and reduce blockchain query overhead
 
-### Scalability Challenges
-- Transaction volume can vary based on blockchain network activity
-- Implement horizontal scaling strategies for high-throughput scenarios
-- Consider caching mechanisms to optimize API response times
+### Security and Privacy Implications
 
-### Data Retention and Archiving
-- Maintain a rolling window of recent transaction data
-- Implement efficient data pruning strategies
-- Provide mechanisms for long-term transaction log archival
+The project maintains a delicate balance between transparency and individual privacy:
 
-### Compliance and Ethical Considerations
-- Ensure transparent tracking without compromising individual privacy
-- Maintain a neutral stance in transaction flagging
-- Provide clear documentation on tracking methodologies
+- **Public Blockchain Data**: All analyzed transactions are derived from publicly verifiable blockchain records
+- **Neutral Tracking**: Provides objective transaction monitoring without making subjective judgments
+- **Data Anonymization**: Focuses on transaction patterns rather than personal wallet identification
 
-### Potential Extensions
-- Integration with multi-blockchain transaction tracking
-- Advanced machine learning models for anomaly detection
+### Monitoring and Alert Strategies
+
+The system offers sophisticated transaction tracking capabilities:
+
+- **Real-time Alerts**: Immediate notifications for significant wallet transfers
+- **Configurable Thresholds**: Customizable rules for flagging transactions based on:
+  - Transfer amount
+  - Frequency of exchange interactions
+  - Sudden balance changes
+
+### Potential Future Enhancements
+
+Areas for potential future development include:
+
+- Multi-blockchain transaction tracking support
+- Advanced anomaly detection using machine learning
 - Enhanced visualization of transaction network graphs
+- More granular exchange interaction analysis
+
+### Compliance and Ethical Guidelines
+
+The project adheres to the following principles:
+
+- Transparent methodology for transaction tracking
+- Respect for individual financial privacy
+- Neutral and objective transaction flagging
+- Community-driven approach to blockchain transparency
+
+### Technical Limitations
+
+Developers and users should be aware of the following constraints:
+
+- Dependency on Koii blockchain RPC endpoint availability
+- Potential variations in transaction processing speed
+- Limited historical data retention
+- Continuous need for updating exchange deposit addresses
+
+### Integration Possibilities
+
+The transaction analysis node can be extended or integrated with:
+
+- Blockchain analytics platforms
+- Cryptocurrency trading tools
+- Regulatory compliance systems
+- Academic research on blockchain economics
 
 ## Contributing
 
-We welcome contributions from the community to help improve and expand this Koii blockchain transaction analysis node. To contribute effectively, please follow these guidelines:
+We welcome and appreciate contributions from the community to help improve and expand this Koii Blockchain Transaction Analysis Node.
 
 ### Ways to Contribute
 
-- **Reporting Issues:** If you find a bug or have a feature suggestion, please open a GitHub issue with a clear description.
-- **Code Contributions:** Submit pull requests with improvements, bug fixes, or new features.
-- **Documentation:** Help improve project documentation by fixing errors or adding clarity.
+- **Reporting Issues**: Identify and report bugs, suggest improvements, or propose new features by opening a GitHub issue.
+- **Code Contributions**: Submit pull requests with bug fixes, enhancements, or new functionality.
+- **Documentation**: Help improve project documentation by correcting errors or adding clarity.
 
 ### Contribution Process
 
 1. Fork the repository
-2. Create a new branch for your feature or bugfix
-   - Use a clear, descriptive branch name
-3. Make your changes
-4. Write or update tests to cover your modifications
-5. Ensure all existing tests pass
-6. Submit a pull request with a comprehensive description of your changes
+2. Create a descriptive branch for your work
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Make your changes, following these guidelines:
+   - Use JavaScript/TypeScript
+   - Write clean, well-documented code
+   - Ensure compatibility with Koii's JSON-RPC methods
+   - Add appropriate error handling
 
-### Technical Requirements
+### Code Quality Requirements
 
-- Use JavaScript/TypeScript
-- Follow existing code style and formatting
-- Write clear, commented code
-- Ensure compatibility with Koii's JSON-RPC methods
-- Add appropriate error handling and logging
+- Maintain existing code style and formatting
+- Write clear, commented code with inline documentation for complex logic
+- Include unit tests for new functionality
+- Ensure all existing tests pass before submitting a pull request
+- Follow the project's architectural patterns
 
-### Code Quality
+### Technical Expectations
 
-- All contributions must pass existing test suites
-- Maintain high code readability and performance
-- Include inline documentation for complex logic
-- Ensure your code aligns with the project's existing architecture
+- Implement contributions using JavaScript/TypeScript
+- Ensure code is compatible with Node.js
+- Add or update tests to cover new or modified functionality
+- Provide comprehensive error handling
+- Include logging for critical operations
+
+### Pull Request Guidelines
+
+- Use a clear, descriptive title
+- Provide a detailed description of changes
+- Reference any related issues
+- Include screenshots or demonstrate functionality if applicable
+
+### Code Review Process
+
+- All submissions require review by project maintainers
+- Be prepared to make requested modifications
+- Expect constructive feedback aimed at improving the contribution
 
 ### Community Guidelines
 
-- Be respectful and constructive in all interactions
-- Provide detailed context in issues and pull requests
-- Be open to feedback and collaborative improvement
-
-### Review Process
-
-- Pull requests will be reviewed by project maintainers
-- Be prepared to make requested changes
-- Expect constructive feedback to improve the contribution
+- Be respectful and inclusive
+- Provide context in issues and pull requests
+- Be open to collaborative improvement
+- Follow the principles of open-source collaboration
 
 ### Communication
 
-- For significant changes, discuss your proposal in a GitHub issue first
-- Join the Koii network community for broader discussions about the project
+- For significant changes, discuss your proposal by opening an issue first
+- Join the Koii network community discussions
+- Stay engaged and responsive to feedback
+
+### Getting Help
+
+If you need assistance or have questions:
+- Check existing documentation
+- Open a GitHub issue for specific technical questions
+- Reach out to the project maintainers for guidance
 
 ## License
 
-The project is currently unlicensed. 
+The project is currently **unlicensed**. 
 
 #### Copyright Status
 Without a specified license, this means:
