@@ -2,28 +2,32 @@
 
 ## Project Overview
 
-The Koii Blockchain Transaction Analysis Node is an open-source solution designed to enhance transparency and monitoring of KOII token transactions on the Koii blockchain network. This project provides a sophisticated system for tracking and analyzing blockchain activities, with a focus on identifying significant token movements and potential market manipulation.
+A blockchain transaction analysis node designed to monitor and track KOII token movements across the Koii network. This open-source tool provides comprehensive transaction monitoring and analysis capabilities, focusing on identifying significant wallet activities and potential market manipulation.
 
 ### Key Features
-- **Comprehensive Transaction Monitoring**: Tracks and analyzes KOII token transactions in real-time
-- **Exchange Interaction Detection**: Identifies wallets sending tokens to known exchange deposit addresses
-- **Large Transfer Tracking**: Flags wallets with substantial balance changes or repeated large transfers
-- **Verifiable API**: Provides a transparent, traceable API with detailed transaction information
+- Real-time blockchain transaction monitoring on Koii's mainnet
+- Detection of large token transfers and wallet interactions with exchanges
+- Verifiable API for transparent transaction tracking
+- Identification of potential token "dumping" behavior
 
-### Core Benefits
-- Increases blockchain transparency by providing detailed transaction insights
-- Helps identify potential token dumping behaviors
-- Offers an open-source solution for community-driven blockchain analysis
-- Enables real-time monitoring of significant token movements
+### Core Capabilities
+- Connect to Koii's RPC endpoint to retrieve blockchain transaction data
+- Track wallets sending tokens to known exchange deposit addresses
+- Flag and analyze significant wallet balance changes
+- Provide a RESTful API for querying transaction and wallet activity
 
-The project serves as a critical tool for investors, researchers, and blockchain enthusiasts seeking to understand token flow and market dynamics within the Koii ecosystem.
+### Benefits
+- Enhances transparency in token movement tracking
+- Enables community-driven blockchain activity monitoring
+- Supports open-source collaboration in blockchain analytics
+- Provides a decentralized approach to transaction verification
 
 ## Getting Started, Installation, and Setup
 
 ### Prerequisites
 
-- Node.js (version 16 or later)
-- npm (Node Package Manager)
+- Node.js (version 16+ recommended)
+- npm package manager
 - Git
 
 ### Quick Start
@@ -39,11 +43,11 @@ The project serves as a critical tool for investors, researchers, and blockchain
    npm install
    ```
 
-3. Configure the environment:
-   Create a `.env` file in the project root and add the following configurations:
+3. Configure environment variables:
+   Create a `.env` file in the project root with the following configuration:
    ```
    KOII_RPC_ENDPOINT=https://mainnet.koii.network
-   TRANSACTION_THRESHOLD=10000  # Example large transaction threshold in KOII tokens
+   LARGE_TRANSFER_THRESHOLD=10000  # KOII tokens
    ```
 
 ### Development Mode
@@ -55,23 +59,23 @@ npm run dev
 
 ### Production Build
 
-Build the project for production:
-```bash
-npm run build
-```
+1. Build the project:
+   ```bash
+   npm run build
+   ```
 
-Start the production build:
-```bash
-npm start
-```
+2. Start the production server:
+   ```bash
+   npm start
+   ```
 
 ### Configuration Options
 
-- `KOII_RPC_ENDPOINT`: Specifies the Koii blockchain RPC endpoint
-- `TRANSACTION_THRESHOLD`: Defines the transaction amount to flag for large transfers
+- Modify `config.json` to adjust transaction monitoring parameters
+- Update exchange deposit addresses in the designated configuration file
 
 ### Troubleshooting
 
-- Ensure all dependencies are installed correctly
-- Check that the `.env` file is properly configured
-- Verify network connectivity to the Koii RPC endpoint
+- Ensure all dependencies are correctly installed
+- Check that the Koii RPC endpoint is accessible
+- Verify network connectivity before running the node
