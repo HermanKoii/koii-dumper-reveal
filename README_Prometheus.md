@@ -2,19 +2,21 @@
 
 ## Project Overview
 
-The Koii Blockchain Transaction Analysis Node is an innovative open-source project designed to provide comprehensive monitoring and analysis of KOII token transactions. This decentralized tool enables real-time tracking of blockchain activities, with a primary focus on identifying and flagging significant wallet movements and potential market manipulation.
+The Koii Blockchain Transaction Analysis Node is an open-source project designed to provide comprehensive monitoring and analysis of KOII token transactions on the Koii blockchain. Its primary purpose is to enhance transparency and detect potentially suspicious trading activities by tracking and flagging significant wallet movements and exchange interactions.
 
 ### Key Features
-- **Blockchain Transaction Monitoring**: Continuously tracks and analyzes KOII token transactions on the Koii network
-- **Exchange Interaction Detection**: Identifies wallet interactions with major cryptocurrency exchanges
-- **Large Transfer Tracking**: Flags and monitors substantial token transfers that may indicate market dumping
-- **Verifiable Transaction API**: Provides a transparent, traceable API for querying transaction data with node-verified information
+- **Blockchain Transaction Monitoring**: Continuously polls the Koii mainnet to retrieve and analyze transaction data in real-time.
+- **Exchange Interaction Tracking**: Identifies and tracks wallets sending KOII tokens to known exchange deposit addresses.
+- **Large Transfer Detection**: Flags wallets with significant balance changes that might indicate potential market manipulation.
+- **Verifiable API**: Provides a transparent, traceable API that allows external users to query transaction data with cryptographic verification.
 
-### Core Benefits
-- Enhances blockchain transparency by offering detailed transaction insights
-- Helps detect potential market manipulation through comprehensive wallet activity tracking
-- Provides an open-source solution for community-driven blockchain analysis
-- Enables real-time monitoring of significant token movements
+### Benefits
+- Increases transparency in KOII token trading
+- Helps identify potential market dumping activities
+- Offers a decentralized approach to transaction monitoring
+- Provides an open-source solution for blockchain transaction analysis
+
+The project is designed to run as a Koii Task, enabling decentralized and collaborative transaction tracking across multiple nodes.
 
 ## Getting Started, Installation, and Setup
 
@@ -24,7 +26,7 @@ The Koii Blockchain Transaction Analysis Node is an innovative open-source proje
 - npm (Node Package Manager)
 - Git
 
-### Quick Start
+### Installation
 
 1. Clone the repository:
    ```bash
@@ -37,60 +39,48 @@ The Koii Blockchain Transaction Analysis Node is an innovative open-source proje
    npm install
    ```
 
-3. Configure the environment:
-   Create a `.env` file in the project root with the following configurations:
+### Configuration
+
+1. Create a `.env` file in the project root directory with the following configurations:
    ```
    KOII_RPC_ENDPOINT=https://mainnet.koii.network
-   TRANSACTION_THRESHOLD=10000  # Example large transaction threshold in KOII tokens
+   TRANSACTION_THRESHOLD=10000  # Example threshold for large transactions
    ```
 
-### Development Mode
+   Customize the following environment variables:
+   - `KOII_RPC_ENDPOINT`: Koii network RPC endpoint
+   - `TRANSACTION_THRESHOLD`: Minimum KOII amount to flag a large transaction
 
+### Running the Node
+
+#### Development Mode
 To run the node in development mode:
 ```bash
 npm run dev
 ```
 
-### Production Build
+#### Production Mode
+To build and start the production version:
+```bash
+npm run build
+npm start
+```
 
-1. Build the project:
-   ```bash
-   npm run build
-   ```
+### Usage
 
-2. Start the production server:
-   ```bash
-   npm start
-   ```
+After starting the node, it will automatically:
+- Connect to the Koii mainnet
+- Monitor blockchain transactions
+- Analyze wallet activities
+- Provide API endpoints for querying transaction data
 
-### Configuration Options
-
-- Modify the `.env` file to adjust:
-  - Blockchain RPC endpoint
-  - Transaction detection thresholds
-  - Logging levels
-
-### Platform-Specific Notes
-
-#### Linux/macOS
-- Ensure bash shell is available
-- Use `chmod +x` for any script files if needed
-
-#### Windows
-- Use PowerShell or Windows Subsystem for Linux (WSL) for best compatibility
-- Ensure Node.js is installed with appropriate environment variables
-
-### Recommended System Requirements
-
-- **CPU:** 2 cores
-- **RAM:** 4GB
-- **Storage:** 50GB SSD
-- **Network:** Stable internet connection with low latency
+Access the API endpoints:
+- Flagged Transactions: `http://localhost:PORT/api/flagged-transactions`
+- Wallet Activity: `http://localhost:PORT/api/wallet/{address}`
+- Real-time Alerts: `http://localhost:PORT/api/alerts`
 
 ### Troubleshooting
 
-- Verify Node.js installation: `node --version`
-- Check npm installation: `npm --version`
-- Ensure all dependencies are correctly installed: `npm install`
-
-For detailed API usage and advanced configurations, refer to the project documentation.
+- Ensure you have the latest version of Node.js installed
+- Check your internet connection to the Koii RPC endpoint
+- Verify that all environment variables are correctly set
