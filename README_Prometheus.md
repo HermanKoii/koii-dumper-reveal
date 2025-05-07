@@ -2,83 +2,93 @@
 
 ## Project Overview
 
-A blockchain transaction analysis tool designed to monitor and track KOII token transfers across exchanges and identify potential market manipulation. This open-source Koii Task provides a transparent, decentralized solution for tracking significant wallet activities and transaction patterns.
+A blockchain transaction analysis tool designed to enhance transparency in the Koii network by monitoring and tracking KOII token transfers. This open-source project provides a decentralized solution for identifying and analyzing significant wallet activities and transaction patterns.
 
-### Key Purpose
+### Purpose
 
-The project aims to enhance market transparency by:
-- Monitoring blockchain transactions on the Koii network
+The project aims to bring unprecedented visibility to KOII token transactions by:
+- Monitoring blockchain activities on the Koii network
 - Identifying large token transfers to and from cryptocurrency exchanges
-- Detecting potential market dumping behaviors
-- Providing a verifiable, open-source tracking mechanism
+- Detecting potential market manipulation and dumping behaviors
+- Providing a transparent, verifiable tracking mechanism
 
-### Core Features
+### Key Features
 
-- **Real-time Transaction Monitoring**: Continuously tracks KOII token transactions using Koii's mainnet RPC
-- **Exchange Interaction Tracking**: Identifies wallets sending tokens to known exchange deposit addresses
-- **Large Transfer Detection**: Flags significant wallet balance changes and potential dumping activities
-- **Verifiable API**: Offers transparent, traceable transaction data with block numbers, transaction IDs, and node signatures
+- **Real-time Transaction Monitoring**: Continuous tracking of KOII token transactions using Koii's mainnet RPC
+- **Exchange Interaction Tracking**: Identification of wallets interacting with known exchange deposit addresses
+- **Large Transfer Detection**: Flagging of significant wallet balance changes and potential dumping activities
+- **Verifiable API**: Transparent transaction data reporting with block numbers, transaction IDs, and node signatures
 
 ### Benefits
 
 - Increases market transparency for KOII token transactions
-- Provides an open-source tool for community-driven blockchain analysis
-- Enables real-time tracking of large token movements
+- Enables community-driven blockchain analysis
+- Provides real-time tracking of large token movements
 - Supports decentralized transaction monitoring through Koii's task framework
 
 ## Getting Started, Installation, and Setup
 
 ### Prerequisites
 
-- Node.js (recommended version 16 or later)
+- Node.js (version 16 or later)
 - npm (Node Package Manager)
 - Git
 
 ### Quick Start
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/YOUR-ORG/koii-analysis-node.git
-   cd koii-analysis-node
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/YOUR-ORG/koii-analysis-node.git
+cd koii-analysis-node
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+# Install dependencies
+npm install
 
-3. Configure the environment:
-   - Create a `.env` file in the project root
-   - Add necessary configuration for the Koii RPC endpoint
-   - Set transaction flagging thresholds
+# Create environment configuration
+touch .env
+```
 
-### Development Mode
+### Environment Configuration
+
+Create a `.env` file in the project root with the following optional configurations:
+
+```
+KOII_RPC_ENDPOINT=https://mainnet.koii.network
+LARGE_TRANSFER_THRESHOLD=10000
+POLLING_INTERVAL=60000
+```
+
+### Running the Application
+
+#### Development Mode
 
 To run the node in development mode:
+
 ```bash
 npm start
 ```
 
-### Production Build
+#### Production Build
 
 To build the project for production:
+
 ```bash
 npm run build
 ```
 
-### Configuration Options
-
-The following environment variables can be set in the `.env` file:
-- `KOII_RPC_ENDPOINT`: Koii mainnet RPC endpoint (default: `https://mainnet.koii.network`)
-- `LARGE_TRANSFER_THRESHOLD`: Minimum transfer amount to flag (e.g., `10000`)
-- `POLLING_INTERVAL`: Frequency of blockchain data retrieval (in milliseconds)
-
-### Platform Considerations
+### Platform Compatibility
 
 This project is primarily designed for Unix-like systems (Linux, macOS). Windows users may need to use Windows Subsystem for Linux (WSL) for optimal compatibility.
 
+### Recommended Workflow
+
+1. Install dependencies
+2. Configure your `.env` file
+3. Start the node in development mode
+4. Monitor the console for transaction tracking and analysis
+
 ### Troubleshooting
 
-- Ensure all dependencies are correctly installed
-- Verify that the Koii RPC endpoint is accessible
+- Verify all dependencies are correctly installed
+- Ensure the Koii RPC endpoint is accessible
 - Check network connectivity and firewall settings
