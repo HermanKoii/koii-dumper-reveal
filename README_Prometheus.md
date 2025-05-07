@@ -2,37 +2,29 @@
 
 ## Project Overview
 
-The Koii Blockchain Transaction Analysis Node is an innovative open-source project designed to provide transparent monitoring and analysis of KOII token transactions on the Koii blockchain. This solution addresses the critical need for tracking and identifying significant wallet movements and potential market manipulation.
+The Koii Blockchain Transaction Analysis Node is an open-source tool designed to monitor and analyze blockchain transactions on the Koii network. Its primary purpose is to provide transparent, verifiable insights into significant token movements, with a specific focus on detecting potential market manipulation and tracking large-scale token transfers.
 
 #### Key Features
-- Real-time monitoring of blockchain transactions
-- Detection of large transfers and potential token dumping activities
-- Comprehensive tracking of wallet interactions with cryptocurrency exchanges
-- Verifiable and transparent transaction flagging mechanism
+- Real-time blockchain transaction monitoring
+- Identification of wallets interacting with cryptocurrency exchanges
+- Detection of large token transfers and potential market dumping activities
+- Verifiable, open-source API for transaction transparency
 
-#### Core Capabilities
-- Connects directly to Koii's mainnet RPC to retrieve and analyze transaction data
-- Identifies wallets sending tokens to exchange deposit addresses
-- Tracks substantial wallet balance changes
-- Provides a public, traceable API for transaction insights
-
-#### Benefits
-- Enhances blockchain transparency
-- Helps identify potential market manipulation
-- Offers open-source, community-driven transaction monitoring
-- Supports the overall health and integrity of the Koii token ecosystem
+#### Core Benefits
+- Enhances market visibility by tracking significant wallet activities
+- Provides a decentralized approach to transaction analysis
+- Offers a transparent, community-driven blockchain monitoring solution
+- Enables proactive identification of potentially suspicious token movements
 
 ## Getting Started, Installation, and Setup
 
 ### Prerequisites
 
-- Node.js (LTS version recommended)
+- Node.js (recommended version 16.x or later)
 - npm (Node Package Manager)
 - Git
 
 ### Quick Start
-
-To get the Koii Blockchain Transaction Analysis Node up and running quickly:
 
 1. Clone the repository:
    ```bash
@@ -45,23 +37,23 @@ To get the Koii Blockchain Transaction Analysis Node up and running quickly:
    npm install
    ```
 
-3. Configure environment:
+3. Configure the environment:
    Create a `.env` file in the project root with the following configurations:
    ```
    KOII_RPC_ENDPOINT=https://mainnet.koii.network
-   TRANSACTION_FLAG_THRESHOLD=10000  # Example large transaction threshold
+   TRANSACTION_THRESHOLD=10000  # Example large transaction threshold
    ```
 
-### Development Mode
+### Development Setup
 
-To run the node in development mode:
+To run the application in development mode:
 ```bash
 npm run dev
 ```
 
 ### Production Build
 
-To build the project for production:
+To build the application for production:
 ```bash
 npm run build
 npm start
@@ -69,30 +61,22 @@ npm start
 
 ### Configuration Options
 
-- Modify `config.json` to customize:
-  - Exchange deposit addresses
-  - Transaction monitoring parameters
-  - API endpoint settings
+- `KOII_RPC_ENDPOINT`: Koii blockchain RPC endpoint
+- `TRANSACTION_THRESHOLD`: Minimum transaction amount to flag (in KOII tokens)
 
 ### Platform-Specific Notes
 
 #### Linux/macOS
-- Ensure you have the latest Node.js LTS version installed
-- Use `nvm` for easy Node.js version management
+- Ensure you have `bash` and `node` installed
+- Use `npm` commands as specified above
 
 #### Windows
-- Use Windows Subsystem for Linux (WSL) for best compatibility
-- Ensure you have Node.js LTS installed via official installer
+- Use Windows Subsystem for Linux (WSL) recommended
+- Install Node.js via official installer
+- Run commands in PowerShell or WSL terminal
 
 ### Troubleshooting
 
 - Verify Node.js installation: `node --version`
-- Check npm installation: `npm --version`
-- For dependency issues, run: `npm ci`
-
-### API Access
-
-After starting the node, access the APIs:
-- Transaction flags: `http://localhost:PORT/api/flagged-transactions`
-- Wallet activity: `http://localhost:PORT/api/wallet/{address}`
-- Real-time alerts: `http://localhost:PORT/api/alerts`
+- Verify npm installation: `npm --version`
+- Check network connectivity to Koii RPC endpoint
