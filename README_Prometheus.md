@@ -2,80 +2,88 @@
 
 ## Project Overview
 
-The Koii Blockchain Transaction Analysis Node is an open-source tool designed to provide comprehensive monitoring and analysis of KOII token transactions on the Koii blockchain. Its primary purpose is to track and flag significant wallet activities, particularly those involving exchanges and large token transfers.
+A specialized blockchain analysis node designed to monitor and track KOII token transactions across the Koii network. This open-source project provides a robust solution for identifying and analyzing significant wallet activities, with a focus on detecting potential market manipulation.
 
 ### Key Features
 - Real-time blockchain transaction monitoring
-- Identification of wallet interactions with cryptocurrency exchanges
-- Detection of large token transfers and potential market dumping behavior
-- Verifiable and transparent transaction tracking
+- Exchange deposit address tracking
+- Large transfer detection
+- Verifiable transaction flagging
+- Comprehensive RESTful API for transaction queries
 
-### Main Capabilities
-- Connect to Koii's mainnet RPC to retrieve and analyze transaction data
-- Maintain a database of exchange deposit addresses
-- Track and flag wallets with substantial balance changes
-- Provide a RESTful API for querying transaction and wallet activity
+### Core Capabilities
+The node connects directly to Koii's mainnet RPC, enabling powerful transaction analysis capabilities. It systematically identifies and flags wallets involved in substantial KOII transfers, particularly those interacting with cryptocurrency exchanges. By providing transparent, traceable transaction data, the project helps maintain market integrity and offers insights into token movement patterns.
 
 ### Benefits
-- Enhances transparency in KOII token transactions
-- Helps identify potential market manipulation
-- Offers an open-source solution for blockchain transaction analysis
-- Enables real-time monitoring of significant token movements
+- Enhanced transparency in blockchain token movements
+- Proactive detection of potential market dumping
+- Open-source, community-driven transaction analysis
+- Flexible API for developers and researchers
+- Decentralized approach to transaction monitoring
 
 ## Getting Started, Installation, and Setup
 
 ### Prerequisites
 
-- Node.js (version 16.x or later)
+- Node.js (recommended version 16.x or later)
 - npm (Node Package Manager)
 - Git
 
-### Installation
+### Quick Start
 
 1. Clone the repository:
-   ```bash
+   ```sh
    git clone https://github.com/YOUR-ORG/koii-analysis-node.git
    cd koii-analysis-node
    ```
 
 2. Install dependencies:
-   ```bash
+   ```sh
    npm install
    ```
 
-### Environment Configuration
-
-1. Create a `.env` file in the project root directory
-2. Configure the following environment variables:
+3. Configure the environment:
+   Create a `.env` file in the project root and add the following configuration:
    ```
    KOII_RPC_ENDPOINT=https://mainnet.koii.network
    TRANSACTION_THRESHOLD=10000  # Example large transaction threshold in KOII tokens
    ```
 
-### Running the Node
+### Development Mode
 
-#### Development Mode
-```bash
+To run the node in development mode:
+```sh
 npm run dev
 ```
 
-#### Production Mode
-```bash
-npm run build
-npm start
-```
+### Production Build
 
-### Quick Start
+1. Build the project:
+   ```sh
+   npm run build
+   ```
 
-1. Ensure all dependencies are installed
-2. Configure the `.env` file with your specific settings
-3. Start the node to begin monitoring blockchain transactions
+2. Start the production server:
+   ```sh
+   npm start
+   ```
 
-### Verification
+### Configuration Options
 
-After starting the node, you can:
-- Check logs for transaction monitoring status
-- Access the API endpoints to verify transaction tracking
-  - `/api/flagged-transactions`
-  - `/api/wallet/{address}`
-  - `/api/alerts`
+- Modify the `.env` file to adjust:
+  - Koii RPC endpoint
+  - Transaction flagging thresholds
+  - Other environment-specific settings
+
+### Recommended Workflow
+
+1. Install dependencies
+2. Configure environment variables
+3. Run in development mode for testing
+4. Build and deploy to production
+
+### Troubleshooting
+
+- Ensure all dependencies are correctly installed
+- Verify network connectivity to Koii's mainnet
+- Check `.env` file for correct configuration
