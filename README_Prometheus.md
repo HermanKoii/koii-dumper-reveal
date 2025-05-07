@@ -2,26 +2,27 @@
 
 ## Project Overview
 
-A blockchain transaction analysis node designed to monitor and track KOII token movements across the Koii network. This open-source project provides a sophisticated system for detecting and analyzing significant blockchain transactions, with a focus on exchange interactions and potential market activities.
+The Koii Blockchain Transaction Analysis Node is an open-source solution designed to enhance transparency and monitoring of KOII token transactions on the Koii blockchain network. This project provides a sophisticated system for tracking and analyzing blockchain activities, with a focus on identifying significant token movements and potential market manipulation.
 
 ### Key Features
-- Real-time blockchain transaction monitoring on the Koii network
-- Detection of wallet interactions with cryptocurrency exchanges
-- Identification of large token transfers and potential market manipulation
-- Verifiable and transparent transaction tracking through a RESTful API
+- **Comprehensive Transaction Monitoring**: Tracks and analyzes KOII token transactions in real-time
+- **Exchange Interaction Detection**: Identifies wallets sending tokens to known exchange deposit addresses
+- **Large Transfer Tracking**: Flags wallets with substantial balance changes or repeated large transfers
+- **Verifiable API**: Provides a transparent, traceable API with detailed transaction information
 
 ### Core Benefits
-- Enhances network transparency by providing detailed transaction insights
-- Enables proactive tracking of significant token movements
-- Offers an open-source solution for blockchain transaction analysis
-- Supports the Koii ecosystem by providing a decentralized monitoring tool
+- Increases blockchain transparency by providing detailed transaction insights
+- Helps identify potential token dumping behaviors
+- Offers an open-source solution for community-driven blockchain analysis
+- Enables real-time monitoring of significant token movements
+
+The project serves as a critical tool for investors, researchers, and blockchain enthusiasts seeking to understand token flow and market dynamics within the Koii ecosystem.
 
 ## Getting Started, Installation, and Setup
 
 ### Prerequisites
 
-Before getting started, ensure you have the following:
-- Node.js (version 16 or higher)
+- Node.js (version 16 or later)
 - npm (Node Package Manager)
 - Git
 
@@ -39,45 +40,38 @@ Before getting started, ensure you have the following:
    ```
 
 3. Configure the environment:
-   - Create a `.env` file in the project root
-   - Add the Koii RPC endpoint and transaction flagging thresholds
-   ```bash
+   Create a `.env` file in the project root and add the following configurations:
+   ```
    KOII_RPC_ENDPOINT=https://mainnet.koii.network
-   LARGE_TRANSACTION_THRESHOLD=10000  # Example threshold in KOII tokens
+   TRANSACTION_THRESHOLD=10000  # Example large transaction threshold in KOII tokens
    ```
 
-### Running the Node
+### Development Mode
 
-#### Development Mode
 To run the node in development mode:
 ```bash
 npm run dev
 ```
 
-#### Production Mode
-To build and run the production release:
+### Production Build
+
+Build the project for production:
 ```bash
 npm run build
+```
+
+Start the production build:
+```bash
 npm start
 ```
 
 ### Configuration Options
 
-- Modify the `.env` file to customize:
-  - RPC endpoint
-  - Transaction flagging thresholds
-  - Logging levels
-  - Exchange deposit addresses to monitor
+- `KOII_RPC_ENDPOINT`: Specifies the Koii blockchain RPC endpoint
+- `TRANSACTION_THRESHOLD`: Defines the transaction amount to flag for large transfers
 
-### Common Setup Issues
+### Troubleshooting
 
-#### Node.js Version
-- Ensure you're using Node.js 16 or higher
-- Use `node --version` to check your current version
-- Consider using `nvm` to manage Node.js versions
-
-#### Dependency Installation
-If you encounter issues installing dependencies:
-- Verify your npm is up to date: `npm install -g npm@latest`
-- Clear npm cache: `npm cache clean --force`
-- Retry installation: `npm install`
+- Ensure all dependencies are installed correctly
+- Check that the `.env` file is properly configured
+- Verify network connectivity to the Koii RPC endpoint
