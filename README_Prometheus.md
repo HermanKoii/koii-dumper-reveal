@@ -2,94 +2,88 @@
 
 ## Project Overview
 
-The Koii Blockchain Transaction Analysis Node is an innovative open-source project designed to provide comprehensive monitoring and analysis of blockchain transactions on the Koii network. Its primary purpose is to enhance transparency and detect potential market manipulation by tracking significant token movements.
+The Koii Blockchain Transaction Analysis Node is an innovative open-source project designed to provide comprehensive monitoring and analysis of blockchain transactions on the Koii network. Its primary purpose is to track and flag significant token movements, with a specific focus on identifying potential market manipulation activities.
 
 ### Key Features
 
-- **Blockchain Transaction Monitoring**: Continuously tracks transactions on the Koii mainnet, focusing on token transfers and wallet interactions with exchanges.
-- **Exchange Interaction Tracking**: Identifies and flags wallet transactions involving known exchange deposit addresses.
-- **Large Transfer Detection**: Monitors and alerts on substantial wallet balance changes that might indicate potential token dumping.
-- **Verifiable API**: Provides a transparent, traceable API that allows querying of transaction data with cryptographic proof.
+- **Blockchain Transaction Monitoring**: Continuously polls the Koii mainnet to retrieve and analyze real-time transaction data
+- **Exchange Interaction Tracking**: Identifies and logs wallet interactions with known cryptocurrency exchanges
+- **Large Transfer Detection**: Flags wallets with substantial balance changes or repeated large transfers
+- **Verifiable Reporting**: Provides a transparent, traceable API that includes detailed transaction information with node signatures
 
-### Core Benefits
+### Benefits
 
-- **Transparency**: Offers an open-source solution for tracking blockchain activity, making market movements more visible.
-- **Security Insights**: Helps community members and investors understand significant token movements.
-- **Decentralized Monitoring**: Leverages Koii's decentralized task framework to distribute transaction analysis across multiple nodes.
+- **Market Transparency**: Helps community members understand significant token movements
+- **Potential Manipulation Detection**: Assists in identifying suspicious trading patterns
+- **Open-Source Collaboration**: Enables community-driven blockchain analysis
+- **Decentralized Execution**: Designed to run as a Koii Task, ensuring distributed and reliable monitoring
 
-The project aims to create a robust, community-driven system for monitoring blockchain transactions, ultimately promoting fair and transparent token economics.
+The project serves as a critical tool for maintaining market integrity by providing an transparent, community-driven approach to tracking blockchain transactions.
 
 ## Getting Started, Installation, and Setup
 
 ### Prerequisites
 
-- Node.js (version 16 or later)
+- Node.js (v14 or later)
 - npm (Node Package Manager)
 - Git
 
 ### Quick Start
 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/YOUR-ORG/koii-analysis-node.git
+   cd koii-analysis-node
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Configure environment variables:
+   Create a `.env` file in the project root with the following configuration:
+   ```
+   KOII_RPC_ENDPOINT=https://mainnet.koii.network
+   LARGE_TRANSFER_THRESHOLD=10000  # KOII tokens
+   ```
+
+### Development Mode
+
+To run the node in development mode:
 ```bash
-# Clone the repository
-git clone https://github.com/YOUR-ORG/koii-analysis-node.git
-cd koii-analysis-node
-
-# Install dependencies
-npm install
-
-# Copy the example environment file
-cp .env.example .env
-
-# Configure your environment variables
-# Edit the .env file with your specific settings
-```
-
-### Configuration
-
-Create a `.env` file in the project root with the following configurations:
-
-```plaintext
-# Koii RPC Endpoint
-KOII_RPC_ENDPOINT=https://mainnet.koii.network
-
-# Transaction monitoring thresholds
-LARGE_TRANSFER_THRESHOLD=10000  # KOII tokens
-FLAGGING_PERCENTAGE=10  # Percentage of wallet balance change
-
-# Optional: API and logging settings
-API_PORT=3000
-LOG_LEVEL=info
-```
-
-### Running the Application
-
-#### Development Mode
-
-```bash
-# Start the application in development mode
 npm run dev
 ```
 
-#### Production Build
+### Production Build
 
-```bash
-# Build the application
-npm run build
+1. Build the project:
+   ```bash
+   npm run build
+   ```
 
-# Start the production server
-npm start
-```
+2. Start the production server:
+   ```bash
+   npm start
+   ```
 
-### Verifying Installation
+### Configuration Options
 
-After starting the application, the following endpoints will be available:
+- `KOII_RPC_ENDPOINT`: Specifies the Koii blockchain RPC endpoint
+- `LARGE_TRANSFER_THRESHOLD`: Define the transaction amount that triggers flagging
 
-- `http://localhost:3000/api/flagged-transactions`
-- `http://localhost:3000/api/wallet/{address}`
-- `http://localhost:3000/api/alerts`
+### Platform Considerations
+
+#### Linux/macOS
+- Ensure bash is available
+- Install required system dependencies if prompted
+
+#### Windows
+- Use Windows Subsystem for Linux (WSL) recommended
+- Alternatively, use Git Bash or PowerShell
 
 ### Troubleshooting
 
-- Ensure you have the correct Node.js version installed
-- Check that all environment variables are properly set
-- Verify network connectivity to the Koii RPC endpoint
+- Verify Node.js installation: `node --version`
+- Check npm installation: `npm --version`
+- Ensure all dependencies are correctly installed
