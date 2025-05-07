@@ -2,28 +2,33 @@
 
 ## Project Overview
 
-A blockchain transaction analysis node designed to monitor and track KOII token transactions with a focus on identifying potential market manipulation. This open-source Koii Task provides a comprehensive solution for tracking and analyzing blockchain activities, specifically targeting exchange interactions and large wallet transfers.
+A specialized blockchain transaction analysis node designed to monitor and track KOII token movements across the Koii network. This open-source project provides a comprehensive solution for detecting and analyzing significant blockchain transactions, with a focus on identifying potential market manipulation and exchange-related activities.
 
 ### Key Features
-- Real-time monitoring of KOII token transactions
+- Real-time blockchain transaction monitoring
+- Automated detection of large token transfers
 - Identification of wallets interacting with cryptocurrency exchanges
-- Detection of large transfers and potential market dumping behavior
-- Verifiable and transparent transaction tracking
-- Comprehensive RESTful API for querying transaction data
+- Verifiable, transparent transaction tracking
+- RESTful API for querying blockchain activity
 
-### Core Benefits
-- Enhances market transparency for KOII token ecosystem
-- Provides early warning system for significant token movements
-- Enables community-driven blockchain activity analysis
-- Supports decentralized monitoring through Koii's task framework
+### Core Capabilities
+The node connects directly to Koii's mainnet RPC, continuously polling for new blocks and analyzing transaction data. It specializes in:
+- Tracking wallet interactions with known exchange deposit addresses
+- Detecting sudden and significant wallet balance changes
+- Flagging potential token dumping behaviors
+- Providing a transparent, verifiable record of blockchain activities
 
-The solution empowers users and stakeholders with detailed insights into KOII token transfers, helping maintain market integrity and providing valuable transaction intelligence.
+### Benefits
+- Enhanced market transparency
+- Early detection of potential token manipulation
+- Open-source infrastructure for blockchain analysis
+- Decentralized approach to transaction monitoring
 
 ## Getting Started, Installation, and Setup
 
 ### Prerequisites
 
-- Node.js (LTS version recommended)
+- Node.js (version 14 or later)
 - npm (Node Package Manager)
 - Git
 
@@ -42,16 +47,13 @@ The solution empowers users and stakeholders with detailed insights into KOII to
 
 ### Configuration
 
-Create a `.env` file in the project root with the following configuration:
+1. Create a `.env` file in the project root directory.
 
-```bash
-# Koii RPC Endpoint
-KOII_RPC_ENDPOINT=https://mainnet.koii.network
-
-# Transaction Flagging Thresholds
-LARGE_TRANSFER_THRESHOLD=10000  # KOII tokens
-DUMP_TRANSACTION_FREQUENCY=3    # Number of large transfers to flag
-```
+2. Configure the following environment variables:
+   ```
+   KOII_RPC_ENDPOINT=https://mainnet.koii.network
+   TRANSACTION_FLAG_THRESHOLD=10000  # Example: Flag transactions over 10,000 KOII
+   ```
 
 ### Running the Node
 
@@ -68,20 +70,18 @@ npm run build
 npm start
 ```
 
-### Verifying Installation
-
-After starting the node, verify it's running correctly by checking the console logs. The node should connect to the Koii RPC endpoint and begin monitoring transactions.
-
-### Troubleshooting
-
-- Ensure all dependencies are correctly installed
-- Check that your `.env` file is properly configured
-- Verify network connectivity to the Koii RPC endpoint
+### Verification
+After starting the node, it will:
+- Connect to the Koii mainnet RPC
+- Begin monitoring blockchain transactions
+- Provide API endpoints for querying transaction data
 
 ### API Endpoints
+- `/api/flagged-transactions`: List of flagged transactions
+- `/api/wallet/{address}`: Wallet historical activity
+- `/api/alerts`: Real-time transfer alerts
 
-Once running, the node provides the following API endpoints:
-
-- `GET /api/flagged-transactions`: List of flagged transactions
-- `GET /api/wallet/{address}`: Historical activity for a specific wallet
-- `GET /api/alerts`: Real-time transfer alerts
+### Troubleshooting
+- Ensure all dependencies are correctly installed
+- Verify `.env` file contains the correct RPC endpoint
+- Check network connectivity to the Koii mainnet
