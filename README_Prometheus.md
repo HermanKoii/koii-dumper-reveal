@@ -2,32 +2,31 @@
 
 ## Project Overview
 
-A specialized blockchain transaction analysis node designed to monitor and analyze KOII token transactions on the Koii network. This open-source tool provides comprehensive transaction tracking and flagging capabilities, focusing on identifying potential market manipulation and large-scale token movements.
+A decentralized blockchain transaction analysis node designed to monitor and track significant KOII token movements across the Koii network. This open-source task provides real-time insights into cryptocurrency transactions, focusing on exchange interactions and large transfer detection.
 
 ### Key Features
-- Real-time blockchain transaction monitoring for KOII tokens
-- Automated detection of exchanges and large wallet transfers
-- Verifiable transaction tracking with cryptographic signatures
-- Comprehensive RESTful API for transaction and wallet analysis
+- Real-time blockchain transaction monitoring
+- Identification of wallets interacting with cryptocurrency exchanges
+- Detection of large token transfers and potential market dumping behavior
+- Verifiable, transparent transaction tracking through a RESTful API
 
-### Core Functionality
-The node performs advanced blockchain data analysis by:
-- Connecting to Koii's mainnet RPC to retrieve transaction data
-- Tracking wallet interactions with known cryptocurrency exchanges
-- Identifying and flagging significant token transfers that might indicate market dumping
-- Providing transparent, traceable transaction insights through a public API
+### Core Benefits
+- Enhanced market transparency for KOII token movements
+- Automated tracking of significant wallet activities
+- Open-source solution for blockchain transaction analysis
+- Decentralized execution leveraging the Koii network infrastructure
 
-### Benefits
-- Enhances market transparency for KOII token ecosystem
-- Provides early warning system for potential token dumping activities
-- Offers open-source, community-driven blockchain analysis
-- Supports decentralized monitoring of token economic activities
+### Primary Use Cases
+- Tracking large token transfers
+- Identifying potential market manipulation
+- Providing transparent, verifiable transaction data
+- Supporting community-driven blockchain insights
 
 ## Getting Started, Installation, and Setup
 
 ### Prerequisites
 
-- Node.js (version 16 or later)
+- Node.js (version 16.x or later)
 - npm (Node Package Manager)
 - Git
 
@@ -35,8 +34,8 @@ The node performs advanced blockchain data analysis by:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/YOUR-ORG/koii-analysis-node.git
-   cd koii-analysis-node
+   git clone https://github.com/koii-network/transaction-analysis-node.git
+   cd transaction-analysis-node
    ```
 
 2. Install dependencies:
@@ -45,10 +44,10 @@ The node performs advanced blockchain data analysis by:
    ```
 
 3. Configure the environment:
-   Create a `.env` file in the project root with the following variables:
+   Create a `.env` file in the project root with the following configurations:
    ```
    KOII_RPC_ENDPOINT=https://mainnet.koii.network
-   LARGE_TRANSFER_THRESHOLD=10000  # Example threshold in KOII tokens
+   TRANSACTION_THRESHOLD=10000  # Example large transaction threshold
    ```
 
 ### Development Mode
@@ -70,14 +69,29 @@ npm run dev
    npm start
    ```
 
-### Configuration Options
+### Verifying Installation
 
-- Modify `.env` to set custom RPC endpoints
-- Adjust transaction monitoring thresholds
-- Configure logging and alert settings
+After installation, the node will:
+- Connect to Koii's mainnet RPC
+- Begin monitoring blockchain transactions
+- Start the verifiable API server
+
+### Docker Support
+
+A `Dockerfile` is included for containerized deployment. To build and run:
+```bash
+docker build -t koii-analysis-node .
+docker run -p 3000:3000 koii-analysis-node
+```
+
+### Environment Variables
+
+- `KOII_RPC_ENDPOINT`: Koii blockchain RPC endpoint
+- `TRANSACTION_THRESHOLD`: Minimum KOII amount to flag as a large transfer
+- `API_PORT`: Port for the verification API (default: 3000)
 
 ### Troubleshooting
 
-- Ensure Node.js and npm are correctly installed
-- Check network connectivity to Koii's RPC endpoint
-- Verify `.env` file permissions and configuration
+- Ensure all dependencies are installed correctly
+- Check that the Koii RPC endpoint is accessible
+- Verify network connectivity and firewall settings
