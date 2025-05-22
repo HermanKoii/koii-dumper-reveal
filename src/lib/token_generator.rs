@@ -1,12 +1,14 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Token, TokenAccount, Mint};
 
-// Custom error type for token generation contract
+// Comprehensive error types for token generation
 #[derive(Debug)]
 pub enum TokenGeneratorError {
     InvalidTokenDump,
     InsufficientTokens,
     DuplicateClaim,
+    InvalidParameters,
+    InsufficientDumpingThreshold,
 }
 
 // Define the token generation program
@@ -83,7 +85,7 @@ pub struct ClaimTokens<'info> {
 /// Calculate generated tokens based on dump amount
 fn calculate_generated_tokens(dump_amount: u64) -> u64 {
     // Implement token generation logic
-    // Example: Linear scaling with a cap
+    // Linear scaling with a cap
     let generation_rate = 0.1; // 10% of dumped tokens
     let max_generated_tokens = 1_000_000; // Prevent excessive token generation
     
