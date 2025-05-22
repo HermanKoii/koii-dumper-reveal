@@ -3,22 +3,27 @@ name = "koii-token-generator"
 version = "0.1.0"
 edition = "2021"
 
-[lib]
-name = "koii_token_generator"
-crate-type = ["cdylib", "lib"]
-
-[features]
-no-entrypoint = []
-
 [dependencies]
+thiserror = "1.0"
 anchor-lang = "0.28.0"
 anchor-spl = "0.28.0"
 solana-program = "1.16.0"
-tokio = { version = "1", features = ["full"] }
 
 [dev-dependencies]
 solana-program-test = "1.16.0"
 solana-sdk = "1.16.0"
 
-[profile.release]
-overflow-checks = true
+[lib]
+path = "src/lib/mod.rs"
+
+[[test]]
+name = "error_handling_tests"
+path = "tests/error_handling_tests.rs"
+
+[[test]]
+name = "token_generator_tests"
+path = "tests/token_generator.rs"
+
+[[test]]
+name = "token_generator_unit_tests"
+path = "tests/token_generator.test.rs"

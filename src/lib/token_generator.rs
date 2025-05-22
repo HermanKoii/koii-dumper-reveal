@@ -1,24 +1,18 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Token, TokenAccount, Mint};
+use crate::errors::ContractError;
 
-// Comprehensive error types for token generation
-#[derive(Debug)]
-pub enum TokenGeneratorError {
-    InvalidTokenDump,
-    InsufficientTokens,
-    DuplicateClaim,
-    InvalidParameters,
-    InsufficientDumpingThreshold,
-}
-
-// Define the token generation program
+/// Define token generation program logic
 #[program]
 pub mod token_generator {
     use super::*;
 
     /// Initialize the token generation program
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        // Initial setup logic
+        // Validate initialization context
+        if ctx.accounts.authority.key().to_string().is_empty() {
+            return Err(ContractError::initialization("Invalid authority").into());
+        }
         Ok(())
     }
 
@@ -29,10 +23,9 @@ pub mod token_generator {
     ) -> Result<()> {
         // Validate token dumping criteria
         if dump_amount == 0 {
-            return Err(TokenGeneratorError::InvalidTokenDump.into());
+            return Err(ContractError::validation("Dump amount must be positive").into());
         }
 
-        // Logic to verify and record token dump
         // Calculate generated tokens based on dump amount
         let generated_tokens = calculate_generated_tokens(dump_amount);
 
@@ -47,8 +40,13 @@ pub mod token_generator {
 
     /// Allow users to claim generated tokens
     pub fn claim_tokens(ctx: Context<ClaimTokens>, amount: u64) -> Result<()> {
-        // Validate claim eligibility
+        // Validate claim parameters
+        if amount == 0 {
+            return Err(ContractError::validation("Claim amount must be positive").into());
+        }
+
         // Transfer tokens to user's account
+        // Additional claim logic can be added here
         Ok(())
     }
 }
@@ -84,11 +82,10 @@ pub struct ClaimTokens<'info> {
 
 /// Calculate generated tokens based on dump amount
 fn calculate_generated_tokens(dump_amount: u64) -> u64 {
-    // Implement token generation logic
-    // Linear scaling with a cap
-    let generation_rate = 0.1; // 10% of dumped tokens
-    let max_generated_tokens = 1_000_000; // Prevent excessive token generation
+    // Implement token generation logic with enhanced safety
+    const GENERATION_RATE: f64 = 0.1; // 10% of dumped tokens
+    const MAX_GENERATED_TOKENS: u64 = 1_000_000; // Prevent excessive token generation
     
-    let generated = (dump_amount as f64 * generation_rate).floor() as u64;
-    generated.min(max_generated_tokens)
+    let generated = (dump_amount as f64 * GENERATION_RATE).floor() as u64;
+    generated.min(MAX_GENERATED_TOKENS)
 }
