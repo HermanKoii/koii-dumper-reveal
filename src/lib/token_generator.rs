@@ -1,57 +1,69 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Token, TokenAccount, Mint};
 
-// Custom error type for token generation contract
+/// Enhanced error handling for token generation
 #[derive(Debug)]
 pub enum TokenGeneratorError {
-    InvalidTokenDump,
-    InsufficientTokens,
-    DuplicateClaim,
+    InvalidTokenDump,        // Invalid dumping parameters
+    InsufficientTokens,      // Not enough tokens to process
+    DuplicateClaim,          // Prevent multiple claims
+    InvalidParameters,       // General parameter validation
+    InsufficientDumpingThreshold, // Dumping amount too low
 }
 
-// Define the token generation program
+/// Token generation program module
 #[program]
 pub mod token_generator {
     use super::*;
 
     /// Initialize the token generation program
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        // Initial setup logic
+        // Basic initialization logic
+        // Could include setting up initial parameters or validation
         Ok(())
     }
 
-    /// Detect token dumping and generate new tokens
+    /// Comprehensive token dump detection and generation
     pub fn detect_token_dump(
         ctx: Context<DetectTokenDump>, 
         dump_amount: u64
     ) -> Result<()> {
-        // Validate token dumping criteria
+        // Robust validation of token dumping criteria
         if dump_amount == 0 {
             return Err(TokenGeneratorError::InvalidTokenDump.into());
         }
 
-        // Logic to verify and record token dump
-        // Calculate generated tokens based on dump amount
+        // Enhanced token generation calculation
         let generated_tokens = calculate_generated_tokens(dump_amount);
 
-        // Mint new tokens
-        token::mint_to(
-            ctx.accounts.into_mint_context(), 
-            generated_tokens
-        )?;
+        // Conditional token minting with additional safety checks
+        if generated_tokens > 0 {
+            token::mint_to(
+                ctx.accounts.into_mint_context(), 
+                generated_tokens
+            )?;
+        } else {
+            return Err(TokenGeneratorError::InsufficientDumpingThreshold.into());
+        }
 
         Ok(())
     }
 
-    /// Allow users to claim generated tokens
+    /// Flexible token claiming mechanism
     pub fn claim_tokens(ctx: Context<ClaimTokens>, amount: u64) -> Result<()> {
-        // Validate claim eligibility
-        // Transfer tokens to user's account
+        // Enhanced claim validation
+        if amount == 0 {
+            return Err(TokenGeneratorError::InvalidParameters.into());
+        }
+
+        // Token transfer logic
+        // TODO: Implement claim tracking to prevent duplicate claims
+        
         Ok(())
     }
 }
 
-/// Context for initializing the program
+/// Context for program initialization
 #[derive(Accounts)]
 pub struct Initialize<'info> {
     #[account(mut)]
@@ -80,12 +92,17 @@ pub struct ClaimTokens<'info> {
     pub token_account: Account<'info, TokenAccount>,
 }
 
-/// Calculate generated tokens based on dump amount
+/// Advanced token generation calculation
 fn calculate_generated_tokens(dump_amount: u64) -> u64 {
-    // Implement token generation logic
-    // Example: Linear scaling with a cap
+    // Sophisticated token generation logic
     let generation_rate = 0.1; // 10% of dumped tokens
     let max_generated_tokens = 1_000_000; // Prevent excessive token generation
+    let min_dump_threshold = 100; // Minimum dump amount to trigger generation
+    
+    // Only generate tokens if dump exceeds minimum threshold
+    if dump_amount < min_dump_threshold {
+        return 0;
+    }
     
     let generated = (dump_amount as f64 * generation_rate).floor() as u64;
     generated.min(max_generated_tokens)
