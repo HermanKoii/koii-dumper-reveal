@@ -1,32 +1,25 @@
-use solana_program::pubkey::Pubkey;
-use solana_program_test::*;
-use solana_sdk::{
-    signature::{Keypair, Signer},
-    transaction::Transaction,
-};
+use koii_token_generator::token_generator::calculate_generated_tokens;
 
-use token_generator::calculate_generated_tokens;
-
-#[tokio::test]
-async fn test_token_generation_calculation() {
-    // Test token generation with various input amounts
+#[test]
+fn test_token_generation_calculation() {
+    // Verify token generation function behavior
     assert_eq!(calculate_generated_tokens(1000), 100);
     assert_eq!(calculate_generated_tokens(10_000), 1000);
     assert_eq!(calculate_generated_tokens(2_000_000), 1_000_000); // Max cap test
 }
 
-#[tokio::test]
-async fn test_zero_token_dump() {
-    // Ensure zero token dump returns zero generated tokens
+#[test]
+fn test_zero_input_handling() {
+    // Ensure zero input is handled correctly
     assert_eq!(calculate_generated_tokens(0), 0);
 }
 
-#[tokio::test]
-async fn test_high_volume_token_generation() {
-    // Test high volume token generation with max cap
-    let high_dump_amount = 10_000_000;
+#[test]
+fn test_maximum_token_generation() {
+    // Test scenarios that exceed maximum token generation
+    let extreme_dump_amount = 20_000_000;
     assert_eq!(
-        calculate_generated_tokens(high_dump_amount), 
-        1_000_000 // Verify max cap is enforced
+        calculate_generated_tokens(extreme_dump_amount), 
+        1_000_000 // Verify strict max cap
     );
 }
